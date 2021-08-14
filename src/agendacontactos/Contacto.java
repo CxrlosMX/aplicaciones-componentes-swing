@@ -17,12 +17,12 @@ package agendacontactos;
 public class Contacto {
 
     private String nombre;
-    private String apellido;
+    private String localidad;
     private int numero;
 
     public Contacto(String nombre, String apellido, int numero) {
         this.nombre = nombre;
-        this.apellido = apellido;
+        this.localidad = apellido;
         this.numero = numero;
     }
 
@@ -35,11 +35,11 @@ public class Contacto {
     }
 
     public String getApellido() {
-        return apellido;
+        return localidad;
     }
 
     public void setApellido(String apellido) {
-        this.apellido = apellido;
+        this.localidad = apellido;
     }
 
     public int getNumero() {
@@ -52,7 +52,7 @@ public class Contacto {
 
     @Override
     public String toString() {
-        return "\nNombre: " + nombre + "\nApellido: " + apellido + "\nNumero: " + numero;
+        return "\nNombre: " + nombre + "\nApellido: " + localidad + "\nNumero: " + numero;
     }
 
 }
