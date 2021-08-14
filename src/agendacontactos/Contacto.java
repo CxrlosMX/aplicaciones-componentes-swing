@@ -18,9 +18,9 @@ public class Contacto {
 
     private String nombre;
     private String localidad;
-    private int numero;
+    private String numero;
 
-    public Contacto(String nombre, String apellido, int numero) {
+    public Contacto(String nombre, String apellido, String numero) {
         this.nombre = nombre;
         this.localidad = apellido;
         this.numero = numero;
@@ -42,17 +42,11 @@ public class Contacto {
         this.localidad = apellido;
     }
 
-    public int getNumero() {
-        return numero;
-    }
-
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
+    
 
     @Override
     public String toString() {
-        return "\nNombre: " + nombre + "\nApellido: " + localidad + "\nNumero: " + numero;
+        return "Nombre: " + nombre + "\nApellido: " + localidad + "\nNumero: " + numero;
     }
 
 }

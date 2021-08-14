@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -39,8 +40,13 @@ public class Lamina extends JPanel {
      Botones
      */
     private JButton agregar, mostrar;
+    private Agenda agenda;
 
     public Lamina() {
+        /*
+         Clase agenda
+         */
+        agenda = new Agenda();
         setLayout(new BorderLayout());
 
         /*
@@ -80,9 +86,10 @@ public class Lamina extends JPanel {
         agregar = new JButton("Agregar");
         mostrar = new JButton("Mostrar");
         /*
-        Asignamos el evento a los botones
-        */
-        
+         Asignamos el evento a los botones
+         */
+        agregar.addActionListener(new EventoContacto());
+        mostrar.addActionListener(new EventoContacto());
         laminaBotones.add(agregar);
         laminaBotones.add(mostrar);
         //Componentes agregados a nuestra lamina
@@ -94,16 +101,24 @@ public class Lamina extends JPanel {
     //Clase que gestionara los eventos
     private class EventoContacto implements ActionListener {
 
-        Agenda agenda = new Agenda();
+        Contacto c;
 
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == agregar) {
-                int num = Integer.parseInt(campoNumero.getText());
-                Contacto c = new Contacto(campoNombre.getText(), campoLocalidad.getText(), num);
+                c = new Contacto(campoNombre.getText(), campoLocalidad.getText(), campoNumero.getText());
                 agenda.agregarContacto(c);
-            } else if (e.getSource() == mostrar) {
-                agenda.mostrar();
+                campoNombre.setText(null);
+                campoLocalidad.setText(null);
+                campoNumero.setText(null);
+            }
+            if (e.getSource() == mostrar) {
+                JOptionPane.showMessageDialog(laminaBotones, "Agenda Contactos\n" + agenda.mostrar(), "Agenda", 1);
+                //
+                campoNombre.setText(null);
+                campoLocalidad.setText(null);
+                campoNumero.setText(null);
+
             }
         }
 

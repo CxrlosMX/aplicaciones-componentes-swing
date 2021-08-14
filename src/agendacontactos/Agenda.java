@@ -27,10 +27,14 @@ public class Agenda {
     
     public void agregarContacto(Contacto c){
         lista.add(c);
-        JOptionPane.showConfirmDialog(null, "Contacto agregado correctamente", "Agregado", 1);
+        JOptionPane.showMessageDialog(null, "Contacto agregado", "Agregado", 1);
     }
-    public void mostrar(){
-        System.out.println(lista);
+    public String mostrar(){
+       String cadena="";
+        for (int i = 0; i <lista.size(); i++) {
+          cadena="\n"+cadena+lista.get(i)+"\n";
+        }
+        return cadena;
     }
 
 }
