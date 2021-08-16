@@ -20,8 +20,9 @@ import javax.swing.JFrame;
 public class miMarco extends JFrame {
 
     public miMarco() {
+        setResizable(false);
         setVisible(true);
-        setBounds(400, 150, 500, 500);
+        setBounds(400, 150, 400, 400);
         setTitle("Registro Contactos");
         Lamina lamina = new Lamina();
         lamina.setBackground(new Color(13, 60, 90));

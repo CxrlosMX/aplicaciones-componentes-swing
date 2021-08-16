@@ -20,21 +20,32 @@ import javax.swing.JOptionPane;
 public class Agenda {
 
     private ArrayList<Contacto> lista;
+    private int contador;
 
     public Agenda() {
         lista = new ArrayList<Contacto>();
+        contador = -1;
     }
-    
-    public void agregarContacto(Contacto c){
+
+    public void agregarContacto(Contacto c) {
         lista.add(c);
+        contador++;
         JOptionPane.showMessageDialog(null, "Contacto agregado", "Agregado", 1);
     }
-    public String mostrar(){
-       String cadena="";
-        for (int i = 0; i <lista.size(); i++) {
-          cadena="\n"+cadena+lista.get(i)+"\n";
+
+    public void mostrar() {
+
+        if (contador != -1) {
+            String cadena = "";
+            for (int i = 0; i < lista.size(); i++) {
+                cadena = "\n" + cadena + lista.get(i) + "\n";
+            }
+            JOptionPane.showMessageDialog(null, "Agenda Contactos\n" + cadena, "Agenda", 1);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Agenda Vacia", "Agenda", 0);
         }
-        return cadena;
+
     }
 
 }

@@ -8,6 +8,7 @@ package agendacontactos;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -53,31 +54,24 @@ public class Lamina extends JPanel {
          Mensaje "Agenda Contactos"
          */
         lamina2 = new JPanel();
-        mensaje = new JLabel("AGENDA CONTACTOS");
-        mensaje.setFont(new Font("Copperplate Gothic Light", Font.BOLD, 25));
-        mensaje.setForeground(Color.WHITE);
-        lamina2.setBackground(new Color(13, 80, 90));
-        lamina2.add(mensaje);
-
+        lamina2.setBackground(new Color(13, 80,4));
+        colocarLabel(mensaje, "AGENDA CONTACTOS", lamina2, Color.WHITE, 25, Font.BOLD, "Agency FB");
         /*
          Area de inserción
          */
         laminaCampo = new JPanel();
         laminaCampo.setLayout(new DispocisionPersonalizada());
-        nombre = new JLabel("Nombre: ");
-        localidad = new JLabel("Localidad: ");
-        numero = new JLabel("Numero: ");
-        //JText
+        laminaCampo.setBackground(new Color(12, 12, 0));
+        colocarLabel(nombre, "Nombre: ", laminaCampo, Color.WHITE, 25, Font.ITALIC, "Agency FB");
         campoNombre = new JTextField(20);
-        campoLocalidad = new JTextField(20);
-        campoNumero = new JTextField(20);
-        //Agregamos nuestros componentes a nuestra laminaCampo
-        laminaCampo.add(nombre);
         laminaCampo.add(campoNombre);
-        laminaCampo.add(localidad);
+        colocarLabel(localidad, "Dirección : ", laminaCampo, Color.WHITE, 25, Font.ITALIC, "Agency FB");
+        campoLocalidad = new JTextField(20);
         laminaCampo.add(campoLocalidad);
-        laminaCampo.add(numero);
+        colocarLabel(numero, "Numero: ", laminaCampo, Color.WHITE, 25, Font.ITALIC, "Agency FB");
+        campoNumero = new JTextField(20);
         laminaCampo.add(campoNumero);
+
 
         /*
          Botones
@@ -97,6 +91,18 @@ public class Lamina extends JPanel {
         add(laminaCampo, BorderLayout.CENTER);
         add(laminaBotones, BorderLayout.SOUTH);
     }
+    /*
+     Método para poner JLabel y JTextFild
+     */
+
+    public void colocarLabel(JLabel label, String texLabel, JPanel lamina, Color color, int size, int type, String font) {
+        //Label
+        label = new JLabel(texLabel);
+        label.setFont(new Font(font, type, size));
+        label.setForeground(color);
+        lamina.add(label);
+
+    }
 
     //Clase que gestionara los eventos
     private class EventoContacto implements ActionListener {
@@ -106,15 +112,18 @@ public class Lamina extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == agregar) {
-                c = new Contacto(campoNombre.getText(), campoLocalidad.getText(), campoNumero.getText());
-                agenda.agregarContacto(c);
-                campoNombre.setText(null);
-                campoLocalidad.setText(null);
-                campoNumero.setText(null);
+                if (campoNombre.getText().length() > 1 && campoNumero.getText().length() > 1) {
+                    c = new Contacto(campoNombre.getText(), ((campoLocalidad.getText().length() <= 1) ? "S/N" : campoLocalidad.getText()), campoNumero.getText());
+                    agenda.agregarContacto(c);
+                    campoNombre.setText(null);
+                    campoLocalidad.setText(null);
+                    campoNumero.setText(null);
+                } else {
+                    JOptionPane.showMessageDialog(laminaBotones, "Campos Vacios", "Rellena todos los campos", 0);
+                }
             }
             if (e.getSource() == mostrar) {
-                JOptionPane.showMessageDialog(laminaBotones, "Agenda Contactos\n" + agenda.mostrar(), "Agenda", 1);
-                //
+                agenda.mostrar();
                 campoNombre.setText(null);
                 campoLocalidad.setText(null);
                 campoNumero.setText(null);
