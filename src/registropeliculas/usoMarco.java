@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package registropeliculas;
 
-import java.awt.Image;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
@@ -16,16 +15,12 @@ import javax.swing.JFrame;
  * @Phone: 953-212-97-27
  * @Email: LuisCRendon131@gmail.com
  * @Date: 30/08/2021
- *
+ * 
  */
-public class miMarco extends JFrame {
-
-    public miMarco() {
-        setVisible(true);
-        setBounds(500, 300, 500, 600);
-        setTitle("Registro Peliculas");
-        LaminaPeliculas lamina = new LaminaPeliculas();
-        add(lamina);
-
+public class usoMarco {
+    public static void main(String[] args) {
+        miMarco marco=new miMarco();
+        marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+
 }
