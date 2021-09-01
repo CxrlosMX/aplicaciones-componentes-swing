@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package registropeliculas;
 
 import java.awt.Component;
@@ -18,9 +17,9 @@ import java.awt.LayoutManager;
  * @Phone: 953-212-97-27
  * @Email: LuisCRendon131@gmail.com
  * @Date: 1/09/2021
- * 
+ *
  */
-public class EnColumna implements LayoutManager{
+public class EnColumna implements LayoutManager {
 
     @Override
     public void addLayoutComponent(String string, Component cmpnt) {
@@ -43,8 +42,22 @@ public class EnColumna implements LayoutManager{
     }
 
     @Override
-    public void layoutContainer(Container cntnr) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void layoutContainer(Container miContenedor) {
+        int contador = 0;
+        int ancho = miContenedor.getWidth() / 2;
+        x = ancho;
+        int n = miContenedor.getComponentCount();
+        for (int i = 0; i < n; i++) {
+            contador++;
 
+            Component c = miContenedor.getComponent(i);
+            c.setBounds(x - 100, y, 100, 20);
+            x += 100;
+            if (contador % 2 == 0) {//Pares solo se incrementara la Y cuando contador sea un numero par
+                x = ancho;
+                y += 40;
+            }
+        }
+    }
+    private int x, y = 20;
 }
