@@ -37,10 +37,10 @@ public class LaminaPeliculas extends JPanel {
         mensaje = new JLabel("Peliculas");
         mensaje.setFont(new Font("Serif", Font.BOLD, 30));
         laminaMensaje.add(mensaje);
-        
         /*
         Parte central 
         */
+        
         
         //Agregamos nuestras laminas a nuestro JPanel principal
         add(laminaMensaje, BorderLayout.NORTH);

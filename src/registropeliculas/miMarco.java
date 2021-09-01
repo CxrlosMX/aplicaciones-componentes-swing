@@ -5,6 +5,7 @@
  */
 package registropeliculas;
 
+import java.awt.Color;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -25,6 +26,7 @@ public class miMarco extends JFrame {
         setBounds(500, 300, 500, 600);
         setTitle("Registro Peliculas");
         LaminaPeliculas lamina = new LaminaPeliculas();
+        lamina.setBackground(new Color(10, 15, 20));
         add(lamina);
 
     }
