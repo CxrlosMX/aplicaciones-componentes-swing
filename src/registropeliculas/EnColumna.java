@@ -55,7 +55,7 @@ public class EnColumna implements LayoutManager {
             x += 100;
             if (contador % 2 == 0) {//Pares solo se incrementara la Y cuando contador sea un numero par
                 x = ancho;
-                y += 40;
+                y += 50;
             }
         }
     }

@@ -11,6 +11,7 @@ import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
 import javax.swing.JTextField;
 
 /**
@@ -35,10 +36,13 @@ public class LaminaPeliculas extends JPanel {
     private JLabel nombrePelicula;
     private JTextField campoNombre;
 
-    //Centro
+    //Centro Genero
     private JLabel textoGenero;
     private JComboBox comboGenero;
-
+    
+    //Centro Año 
+    private JLabel textYear;
+    private JSlider barraYear;
     public LaminaPeliculas() {
         //Laminas uso
         laminaMensaje = new JPanel();
@@ -66,9 +70,26 @@ public class LaminaPeliculas extends JPanel {
         comboGenero.addItem("Aventuras");
         laminaCentro.add(comboGenero);
         //--------------------------------------------------------------------------------
+        
+        this.colocarSlider(barraYear, laminaCentro);
+        //---------------------------------------------------------------------------------------
         //Agregamos nuestras laminas a nuestro JPanel principal
         add(laminaMensaje, BorderLayout.NORTH);
         add(laminaCentro, BorderLayout.CENTER);
+    }
+    /*
+    Método que coloca nuestra JSlider
+    */
+    public final JSlider colocarSlider(JSlider slider, JPanel lamina){
+        //JSlider(int min, int max, int value)
+        slider=new JSlider(1990, 2000, 1995);
+        slider.setMajorTickSpacing(10);
+        slider.setMinorTickSpacing(5);
+        slider.setPaintTicks(true);
+        slider.setPaintLabels(true);
+        slider.setSnapToTicks(true);
+        lamina.add(slider);
+        return slider;
     }
     //
 
