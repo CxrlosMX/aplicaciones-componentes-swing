@@ -7,12 +7,15 @@ package registropeliculas;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
 
 /**
  *
@@ -39,10 +42,11 @@ public class LaminaPeliculas extends JPanel {
     //Centro Genero
     private JLabel textoGenero;
     private JComboBox comboGenero;
-    
+
     //Centro Año 
     private JLabel textYear;
-    private JSlider barraYear;
+    private JSpinner yearMovie;
+
     public LaminaPeliculas() {
         //Laminas uso
         laminaMensaje = new JPanel();
@@ -70,28 +74,23 @@ public class LaminaPeliculas extends JPanel {
         comboGenero.addItem("Aventuras");
         laminaCentro.add(comboGenero);
         //--------------------------------------------------------------------------------
-        
-        this.colocarSlider(barraYear, laminaCentro);
+        this.dameJLabel("Serif", 15, Font.ITALIC, textYear, "AÑO LANZAMIENTO: ", laminaCentro, null, Color.white);
+        this.dameSpinner(yearMovie, laminaCentro);
         //---------------------------------------------------------------------------------------
         //Agregamos nuestras laminas a nuestro JPanel principal
         add(laminaMensaje, BorderLayout.NORTH);
         add(laminaCentro, BorderLayout.CENTER);
     }
+
     /*
-    Método que coloca nuestra JSlider
-    */
-    public final JSlider colocarSlider(JSlider slider, JPanel lamina){
-        //JSlider(int min, int max, int value)
-        slider=new JSlider(1990, 2000, 1995);
-        slider.setMajorTickSpacing(10);
-        slider.setMinorTickSpacing(5);
-        slider.setPaintTicks(true);
-        slider.setPaintLabels(true);
-        slider.setSnapToTicks(true);
-        lamina.add(slider);
-        return slider;
+     Método que coloca nuestro JSPinner
+     */
+    private JSpinner dameSpinner(JSpinner spinner,JPanel lamina) {
+      //spinner=new JSpinner(new SpinnerNumberModel);
+        spinner=new JSpinner(new SpinnerNumberModel(1995, 1990, 2020, 1));
+        lamina.add(spinner);
+        return spinner;
     }
-    //
 
     /*
      Método que colocara un JLabel personalizado
@@ -105,9 +104,5 @@ public class LaminaPeliculas extends JPanel {
         return i;
     }
 
-    //Método que nos devuelbe un mensaje personalizado
-    private void mensajeTexto(String tipografia, int tamagno, int estiliLetra, JLabel i) {
-        i.setFont(new Font(tipografia, estiliLetra, tamagno));
-
-    }
+  
 }

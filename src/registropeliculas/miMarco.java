@@ -23,6 +23,7 @@ public class miMarco extends JFrame {
 
     public miMarco() {
         setVisible(true);
+        setResizable(false);
         setBounds(500, 300, 500, 600);
         setTitle("Registro Peliculas");
         LaminaPeliculas lamina = new LaminaPeliculas();
