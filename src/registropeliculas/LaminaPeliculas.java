@@ -9,6 +9,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -28,9 +31,10 @@ import javax.swing.SpinnerNumberModel;
  */
 public class LaminaPeliculas extends JPanel {
     /*
+    Creamos la instancia de nuestra clase 
+    /*
      Componentes 1
      */
-
     private JLabel mensaje;
     private JPanel laminaMensaje;
 
@@ -46,6 +50,11 @@ public class LaminaPeliculas extends JPanel {
     //Centro Año 
     private JLabel textYear;
     private JSpinner yearMovie;
+    /*
+     Lamina superior botones
+     */
+    private JPanel laminaBotones;
+    private JButton botonAceptar, botonMostrar;
 
     public LaminaPeliculas() {
         //Laminas uso
@@ -77,17 +86,35 @@ public class LaminaPeliculas extends JPanel {
         this.dameJLabel("Serif", 15, Font.ITALIC, textYear, "AÑO LANZAMIENTO: ", laminaCentro, null, Color.white);
         this.dameSpinner(yearMovie, laminaCentro);
         //---------------------------------------------------------------------------------------
+        /*
+         Lamina superior
+         */
+        laminaBotones = new JPanel();
+        laminaBotones.setLayout(new GridLayout(1, 2));
+        colocarBoton(botonAceptar, "REGISTRAR", laminaBotones);
+        colocarBoton(botonMostrar, "MOSTRAR", laminaBotones);
+        //--------------------------------------------------------------------------------------
         //Agregamos nuestras laminas a nuestro JPanel principal
         add(laminaMensaje, BorderLayout.NORTH);
         add(laminaCentro, BorderLayout.CENTER);
+        add(laminaBotones, BorderLayout.SOUTH);
+    }
+    /*
+     Método para colocar un boton
+     */
+
+    public JButton colocarBoton(JButton boton, String texto, JPanel lamina) {
+        boton = new JButton(texto);
+        lamina.add(boton);
+        return boton;
     }
 
     /*
      Método que coloca nuestro JSPinner
      */
-    private JSpinner dameSpinner(JSpinner spinner,JPanel lamina) {
-      //spinner=new JSpinner(new SpinnerNumberModel);
-        spinner=new JSpinner(new SpinnerNumberModel(1995, 1990, 2020, 1));
+    private JSpinner dameSpinner(JSpinner spinner, JPanel lamina) {
+        //spinner=new JSpinner(new SpinnerNumberModel);
+        spinner = new JSpinner(new SpinnerNumberModel(1995, 1990, 2020, 1));
         lamina.add(spinner);
         return spinner;
     }
@@ -104,5 +131,4 @@ public class LaminaPeliculas extends JPanel {
         return i;
     }
 
-  
 }

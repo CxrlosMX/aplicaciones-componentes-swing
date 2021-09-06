@@ -20,8 +20,8 @@ import javax.swing.JOptionPane;
  */
 public class GestionPeliculas {
 
-    private ArrayList<PeliculaClasss> lista;
-    private int contador;
+    private final ArrayList<PeliculaClasss> lista;
+    private final int contador;
 
     public GestionPeliculas() {
         lista = new ArrayList<>();

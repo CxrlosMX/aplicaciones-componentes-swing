@@ -60,5 +60,5 @@ public class EnColumna implements LayoutManager {
             }
         }
     }
-    private int x, y = 30;
+    private int x, y = 90;
 }
