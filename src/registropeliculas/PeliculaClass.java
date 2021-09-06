@@ -14,13 +14,13 @@ package registropeliculas;
  * @Date: 30/08/2021
  *
  */
-public class PeliculaClasss {
+public class PeliculaClass {
 
     private String nombre;
     private String genero;
     private int year;
 
-    public PeliculaClasss(String nombre, String genero, int year) {
+    public PeliculaClass(String nombre, String genero, int year) {
         this.nombre = nombre;
         this.genero = genero;
         this.year= year;

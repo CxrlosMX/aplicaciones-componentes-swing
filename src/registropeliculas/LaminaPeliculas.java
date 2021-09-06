@@ -10,10 +10,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.JSpinner;
@@ -31,32 +34,38 @@ import javax.swing.SpinnerNumberModel;
  */
 public class LaminaPeliculas extends JPanel {
     /*
-    Creamos la instancia de nuestra clase 
+     Creamos la instancia de nuestra clase 
+     */
+
+    private final GestionPeliculas controlPeliculas;
+    private PeliculaClass pelicula;
     /*
      Componentes 1
      */
     private JLabel mensaje;
-    private JPanel laminaMensaje;
+    private final JPanel laminaMensaje;
 
     //Componentes que iran en el centro de la aplicacion
-    private JPanel laminaCentro;
+    private final JPanel laminaCentro;
     private JLabel nombrePelicula;
-    private JTextField campoNombre;
+    private final JTextField campoNombre;
 
     //Centro Genero
     private JLabel textoGenero;
-    private JComboBox comboGenero;
+    private final JComboBox comboGenero;
 
     //Centro Año 
     private JLabel textYear;
-    private JSpinner yearMovie;
+    private final JSpinner yearMovie;
     /*
      Lamina superior botones
      */
-    private JPanel laminaBotones;
-    private JButton botonAceptar, botonMostrar;
+    private final JPanel laminaBotones;
+    private final JButton botonAceptar, botonMostrar;
 
     public LaminaPeliculas() {
+        //Instanciamos nuestra clase GestionPelicula
+        controlPeliculas = new GestionPeliculas();
         //Laminas uso
         laminaMensaje = new JPanel();
         //Definimos el Layout 
@@ -84,15 +93,24 @@ public class LaminaPeliculas extends JPanel {
         laminaCentro.add(comboGenero);
         //--------------------------------------------------------------------------------
         this.dameJLabel("Serif", 15, Font.ITALIC, textYear, "AÑO LANZAMIENTO: ", laminaCentro, null, Color.white);
-        this.dameSpinner(yearMovie, laminaCentro);
+        yearMovie = new JSpinner(new SpinnerNumberModel(1995, 1990, 2020, 1));
+        laminaCentro.add(yearMovie);
         //---------------------------------------------------------------------------------------
         /*
-         Lamina superior
+         Lamina inferior
          */
         laminaBotones = new JPanel();
         laminaBotones.setLayout(new GridLayout(1, 2));
-        colocarBoton(botonAceptar, "REGISTRAR", laminaBotones);
-        colocarBoton(botonMostrar, "MOSTRAR", laminaBotones);
+        botonAceptar = new JButton("REGISTRAR");
+        botonAceptar.addActionListener(new EventosAplicacion());
+        laminaBotones.add(botonAceptar);
+        botonMostrar = new JButton("MOSTRAR");
+        botonMostrar.addActionListener(new EventosAplicacion());
+        laminaBotones.add(botonMostrar);
+        //colocarBoton(botonAceptar, "REGISTRAR", laminaBotones);
+        //botonAceptar.addActionListener(new EventosAplicacion());
+        // colocarBoton(botonMostrar, "MOSTRAR", laminaBotones);
+        //botonMostrar.addActionListener(new EventosAplicacion());
         //--------------------------------------------------------------------------------------
         //Agregamos nuestras laminas a nuestro JPanel principal
         add(laminaMensaje, BorderLayout.NORTH);
@@ -105,6 +123,7 @@ public class LaminaPeliculas extends JPanel {
 
     public JButton colocarBoton(JButton boton, String texto, JPanel lamina) {
         boton = new JButton(texto);
+        boton.addActionListener(new EventosAplicacion());
         lamina.add(boton);
         return boton;
     }
@@ -129,6 +148,31 @@ public class LaminaPeliculas extends JPanel {
         lamina.setBackground(colorLamina);
         lamina.add(i);
         return i;
+    }
+
+    /*
+     Clase intern que se encargara de gestionar los eventos
+     */
+    private class EventosAplicacion implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == botonAceptar) {
+                if (campoNombre.getText().length() > 0) {
+                    int year = (int) yearMovie.getValue();
+                    pelicula = new PeliculaClass(campoNombre.getText(), (String) comboGenero.getSelectedItem(), year);
+                    controlPeliculas.addPelicula(pelicula);
+                    campoNombre.setText(null);
+                }
+                else {
+                JOptionPane.showMessageDialog(mensaje, "Rellene todos los campos","Campos vacio", 2);
+                }
+            } else if (e.getSource() == botonMostrar) {
+                controlPeliculas.showMovies();
+            }
+
+        }
+
     }
 
 }

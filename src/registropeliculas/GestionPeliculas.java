@@ -20,8 +20,8 @@ import javax.swing.JOptionPane;
  */
 public class GestionPeliculas {
 
-    private final ArrayList<PeliculaClasss> lista;
-    private final int contador;
+    private final ArrayList<PeliculaClass> lista;
+    private int contador;
 
     public GestionPeliculas() {
         lista = new ArrayList<>();
@@ -30,17 +30,22 @@ public class GestionPeliculas {
     }
 
     //Método para agregar una pelicula
-    public void addPelicula(PeliculaClasss pelicula) {
+    public void addPelicula(PeliculaClass pelicula) {
         lista.add(pelicula);
-        JOptionPane.showMessageDialog(null, "Pelicula Agregada Correctamente", pelicula.getNombre() + " Agregada", 1,new ImageIcon("recursos/movie.png"));
+        JOptionPane.showMessageDialog(null, "Pelicula Agregada Correctamente", pelicula.getNombre() + " Agregada", 1, new ImageIcon("recursos/movie.png"));
+        contador++;
     }
 
     //Método para mostrar las peliculas de nuestra lista
     public void showMovies() {
-        String cadena = "";
-        for (PeliculaClasss i : lista) {
-            cadena +="\n"+ i + "\n";
+        if (contador != -1) {
+            String cadena = "";
+            for (PeliculaClass i : lista) {
+                cadena += i + "\n";
+            }
+            JOptionPane.showMessageDialog(null, "MOVIES\n" + cadena, "Registro Peliculas", 1, new ImageIcon("recursos/net.png"));
+        } else {
+            JOptionPane.showMessageDialog(null, "Registro Vacio", "No hay peliculas registradas", 2);
         }
-        JOptionPane.showMessageDialog(null, "MOVIES\n" + cadena, "Registro Peliculas", 1,new ImageIcon("recursos/net.png"));
     }
 }
