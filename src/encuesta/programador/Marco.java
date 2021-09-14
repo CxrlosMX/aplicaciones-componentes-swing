@@ -21,7 +21,7 @@ public class Marco extends JFrame {
     public Marco() {
 
         setVisible(true);
-        setBounds(500, 00, 300,500);
+        setBounds(500, 300, 400,550);
         setTitle("Programadores X");
         Lamina lamina=new Lamina();
         add(lamina);

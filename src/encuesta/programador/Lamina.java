@@ -7,15 +7,19 @@ package encuesta.programador;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
-import javafx.scene.layout.Border;
+
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JSlider;
 import javax.swing.JTextField;
 
 /**
@@ -45,8 +49,19 @@ public class Lamina extends JPanel {
     private final JLabel sistemaOperativo;
     private final ButtonGroup grupoSO;
     private final JRadioButton opWindows, opLinux, opMac;
-    private JPanel laminaSO;
-
+    private final JPanel laminaSO;
+    //CheckBox--
+    private final JPanel laminaCheck;
+    private final JLabel mensajeCheck;
+    private final JCheckBox check1,check2,check3;
+    
+    //Slider
+    private final JPanel laminaSlider;
+    private final JLabel mensajeSlider;
+    private final JSlider horasSlider;
+    //Lamina inferior
+    private final JPanel laminaInferior;
+    private final JButton botonRegistro,BotonMostrar;
     public Lamina() {
         javax.swing.border.Border borde = BorderFactory.createLineBorder(new Color(12, 45, 120), 2);
         setLayout(new BorderLayout());
@@ -54,6 +69,9 @@ public class Lamina extends JPanel {
         laminaMensaje = new JPanel();
         laminaNombre = new JPanel();
         laminaSO = new JPanel();
+        laminaCheck=new JPanel();
+        laminaSlider=new JPanel();
+        laminaInferior=new JPanel();
         personalizarJLabel(mensajeBienvenida, "ENCUESTA", "Serif", 30, Font.ITALIC, laminaMensaje);
 
         /*
@@ -71,7 +89,7 @@ public class Lamina extends JPanel {
         cajaH1.add(nombre);
         cajaH1.add(Box.createHorizontalStrut(20));
         cajaH1.add(campoNombre);
-       // laminaNombre.setBorder(borde);
+        // laminaNombre.setBorder(borde);
         laminaNombre.add(cajaH1);
         /*
          Caja radioButton
@@ -82,6 +100,7 @@ public class Lamina extends JPanel {
         personalizarT(sistemaOperativo, "Serif", 20, Font.ITALIC);
         grupoSO = new ButtonGroup();
         opWindows = new JRadioButton("Windows");
+        opWindows.setFont(new Font("Serif", Font.ITALIC, 20));
         opLinux = new JRadioButton("Linux");
         opMac = new JRadioButton("Mac");
         grupoSO.add(opWindows);
@@ -93,17 +112,57 @@ public class Lamina extends JPanel {
         cajaH2.add(opMac);
         //laminaSO.setBorder(borde);
         laminaSO.add(cajaH2);
+
+        //Caja para CheckBox--------------------------------
+        Box cajaH3=Box.createVerticalBox();
+        cajaH3.add(Box.createVerticalStrut(10));
+        mensajeCheck=new JLabel("Elige tu especialidad         ");
+        personalizarT(mensajeCheck, "Serif", 20, Font.ITALIC);
+        check1=new JCheckBox("Programación");
+        check2=new JCheckBox("Diseño Gráfico");
+        check3=new JCheckBox("Administración");
+        cajaH3.add(mensajeCheck);
+        cajaH3.add(check1);
+        cajaH3.add(check2);
+        cajaH3.add(check3);
+        laminaCheck.add(cajaH3);
+        //JSLider para verificar las horas de trabajo-------------------------------
+         Box cajaH4=Box.createVerticalBox();
+        cajaH4.add(Box.createVerticalStrut(10));
+        mensajeSlider=new JLabel("Horas que dedicas en el ordenador");
+        personalizarT(mensajeSlider, "Serif", 20, Font.ITALIC);
+        horasSlider=new JSlider(1, 10, 2);
+        horasSlider.setPreferredSize(new Dimension(50, 50));
+        horasSlider.setMajorTickSpacing(1);
+        horasSlider.setMinorTickSpacing(1);
+        horasSlider.setPaintLabels(true);
+        horasSlider.setPaintTicks(true);
+        cajaH4.add(mensajeSlider);
+        cajaH4.add(horasSlider);
+        laminaSlider.add(cajaH4);
+        //------------------------------
+        Box cajaH5=Box.createHorizontalBox();
+        botonRegistro=new JButton("Registrar");
+        BotonMostrar=new JButton("Mostrar");
+        cajaH5.add(botonRegistro);
+        cajaH5.add(Box.createHorizontalStrut(60));
+        cajaH5.add(BotonMostrar);
+        laminaInferior.add(cajaH5);
+        //------------------------------
         /*
          Cajas agregadas a la caja principal
          */
         cajaVertical.add(laminaNombre);
         cajaVertical.add(laminaSO);
+        cajaVertical.add(laminaCheck);
+        cajaVertical.add(laminaSlider);
         laminaPrincipal.add(cajaVertical);
         /*
          Laminas agregadas
          */
         add(laminaMensaje, BorderLayout.NORTH);
         add(laminaPrincipal, BorderLayout.CENTER);
+        add(laminaInferior,BorderLayout.SOUTH);
     }
 
     /*
