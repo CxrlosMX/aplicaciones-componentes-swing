@@ -34,10 +34,13 @@ public class GestorProgramadores {
     }
 
     public String mostrarControl() {
+        if(contador!=-1){
         String cadena = "";
         for (Programador i : control) {
             cadena = cadena + "\n" + i+"\n";
         }
         return cadena;
+    }
+        return "REGISTRO VACIO";
     }
 }

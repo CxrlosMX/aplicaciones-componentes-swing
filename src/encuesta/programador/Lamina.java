@@ -9,6 +9,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -32,7 +34,11 @@ import javax.swing.JTextField;
  *
  */
 public class Lamina extends JPanel {
-
+    /*
+    Clase GestorProgramadores
+    */
+    private GestorProgramadores registroProgramadores;
+    
     private final JPanel laminaPrincipal;
     private JLabel mensajeBienvenida;
     private final JPanel laminaMensaje;
@@ -63,28 +69,35 @@ public class Lamina extends JPanel {
     private final JPanel laminaInferior;
     private final JButton botonRegistro,BotonMostrar;
     public Lamina() {
-        javax.swing.border.Border borde = BorderFactory.createLineBorder(new Color(12, 45, 120), 2);
+        /*
+        Clase
+        */
+        registroProgramadores=new GestorProgramadores();
+        //-----
+        javax.swing.border.Border borde = BorderFactory.createLineBorder(new Color(0,0,0), 2);
         setLayout(new BorderLayout());
         laminaPrincipal = new JPanel();
         laminaMensaje = new JPanel();
+        laminaMensaje.setBackground(new Color(207, 67, 80));
+       
         laminaNombre = new JPanel();
         laminaSO = new JPanel();
         laminaCheck=new JPanel();
         laminaSlider=new JPanel();
         laminaInferior=new JPanel();
-        personalizarJLabel(mensajeBienvenida, "ENCUESTA", "Serif", 30, Font.ITALIC, laminaMensaje);
+        personalizarJLabel(mensajeBienvenida, "ENCUESTA", "Serif", 30, Font.BOLD, laminaMensaje);
 
         /*
          Creamos una caja vertical en la cual iran todos nuestros componentes
          */
         Box cajaVertical = Box.createVerticalBox();
-
+        cajaVertical.setBorder(borde);
         /*
          Ventana superior
          */
         Box cajaH1 = Box.createHorizontalBox();
         nombre = new JLabel("NOMBRE");
-        personalizarT(nombre, "Serif", 20, Font.ITALIC);
+        personalizarT(nombre, "Agency FB", 20, Font.BOLD);
         campoNombre = new JTextField(10);
         cajaH1.add(nombre);
         cajaH1.add(Box.createHorizontalStrut(20));
@@ -97,12 +110,14 @@ public class Lamina extends JPanel {
         Box cajaH2 = Box.createVerticalBox();
         cajaH2.add(Box.createVerticalStrut(10));
         sistemaOperativo = new JLabel("Elige un sistema operativo");
-        personalizarT(sistemaOperativo, "Serif", 20, Font.ITALIC);
+        personalizarT(sistemaOperativo, "Agency FB", 20, Font.BOLD);
         grupoSO = new ButtonGroup();
         opWindows = new JRadioButton("Windows");
-        opWindows.setFont(new Font("Serif", Font.ITALIC, 20));
+        opWindows.setBackground(new Color(90,190,125));
         opLinux = new JRadioButton("Linux");
+        opLinux.setBackground(new Color(90,190,125));
         opMac = new JRadioButton("Mac");
+        opMac.setBackground(new Color(90,190,125));
         grupoSO.add(opWindows);
         grupoSO.add(opLinux);
         grupoSO.add(opMac);
@@ -117,10 +132,13 @@ public class Lamina extends JPanel {
         Box cajaH3=Box.createVerticalBox();
         cajaH3.add(Box.createVerticalStrut(10));
         mensajeCheck=new JLabel("Elige tu especialidad         ");
-        personalizarT(mensajeCheck, "Serif", 20, Font.ITALIC);
+        personalizarT(mensajeCheck, "Agency FB", 20, Font.BOLD);
         check1=new JCheckBox("Programación");
+        check1.setBackground(new Color(90,190,125));
         check2=new JCheckBox("Diseño Gráfico");
+        check2.setBackground(new Color(90,190,125));
         check3=new JCheckBox("Administración");
+        check3.setBackground(new Color(90,190,125));
         cajaH3.add(mensajeCheck);
         cajaH3.add(check1);
         cajaH3.add(check2);
@@ -130,8 +148,9 @@ public class Lamina extends JPanel {
          Box cajaH4=Box.createVerticalBox();
         cajaH4.add(Box.createVerticalStrut(10));
         mensajeSlider=new JLabel("Horas que dedicas en el ordenador");
-        personalizarT(mensajeSlider, "Serif", 20, Font.ITALIC);
+        personalizarT(mensajeSlider, "Agency FB", 20, Font.BOLD);
         horasSlider=new JSlider(1, 10, 2);
+        horasSlider.setBackground(new Color(90,190,125));
         horasSlider.setPreferredSize(new Dimension(50, 50));
         horasSlider.setMajorTickSpacing(1);
         horasSlider.setMinorTickSpacing(1);
@@ -152,11 +171,18 @@ public class Lamina extends JPanel {
         /*
          Cajas agregadas a la caja principal
          */
+        laminaNombre.setBackground(new Color(90,190,125));
+        laminaSO.setBackground(new Color(90,190,125));
+        laminaCheck.setBackground(new Color(90,190,125));
+        laminaSlider.setBackground(new Color(90,190,125));
+        //-------------------------------------*/
         cajaVertical.add(laminaNombre);
         cajaVertical.add(laminaSO);
         cajaVertical.add(laminaCheck);
         cajaVertical.add(laminaSlider);
+       
         laminaPrincipal.add(cajaVertical);
+        laminaPrincipal.setBackground(new Color(12, 102, 202));
         /*
          Laminas agregadas
          */
@@ -176,5 +202,21 @@ public class Lamina extends JPanel {
 
     public void personalizarT(JLabel label, String letra, int tamagno, int tipoLetra) {
         label.setFont(new Font(letra, tipoLetra, tamagno));
+    }
+    /*
+    Evento
+    */
+    private class EventoRegistro implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(e.getSource()==botonRegistro){
+                
+               // Programador p=new Programador(campoNombre.getText(),(String)grupoSO.getSelection(), null, WIDTH);
+                
+            }
+            
+        }
+    
     }
 }
