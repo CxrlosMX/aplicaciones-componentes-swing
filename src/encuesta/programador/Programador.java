@@ -29,10 +29,18 @@ public class Programador {
         this.especialidad = especialidad;
         this.horasDedicadas = horasDedicadas;
     }
+    public String especialidades(){
+    String cadena="";
+    
+        for (String i : especialidad) {
+            cadena+=i+"\n";
+        }
+        return cadena;
+    }
 
     @Override
     public String toString() {
-        return "Nombre: " + nombre + "\nSistema OPerativo: " + sistemaOPerativo + "\nEspecialidad: " + especialidad + "\nHoras Dedicadas: " + horasDedicadas;
+        return "Nombre: " + nombre + "\nSistema Operativo: " + sistemaOPerativo + "\nEspecialidad: " + especialidades() + "\nHoras Dedicadas: " + horasDedicadas+"hrs";
     }
 
 }

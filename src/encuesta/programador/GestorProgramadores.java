@@ -37,7 +37,7 @@ public class GestorProgramadores {
         if(contador!=-1){
         String cadena = "";
         for (Programador i : control) {
-            cadena = cadena + "\n" + i+"\n";
+            cadena +=i+"\n";
         }
         return cadena;
     }
